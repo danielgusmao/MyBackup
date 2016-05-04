@@ -72,13 +72,13 @@ class MyBackup():
         if MyBackup.EmptyFile ==1:
            exit()
 
-        filename=time.strftime('%y%d%m%H%M')+".tar"
+        filename=os.environ.get('USER')+time.strftime('%y%d%m%H%M')+".tar"
         backupfile=tarfile.open(filename,'w')
        
         files=open(MyBackup.FileConfig,'r') 
         for i in files:
             i=i.strip('\n') 
-            print("adding: ",i)
+            print("saving: ",i)
             backupfile.add(i)
         
         backupfile.close()
